@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "312546916890",
+    "firebase_url": "https://docs-saver.firebaseio.com",
+    "project_id": "docs-saver",
+    "storage_bucket": "docs-saver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312546916890:android:6bad16da1ed4f1c8542fa3",
+        "android_client_info": {
+          "package_name": "com.techexpert.docssaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312546916890-ordar2k8m5ullljidstb6o8lu06qphs1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfy3_lyi7Dv72hkfFPM5OHHVaJpohjTzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312546916890-ordar2k8m5ullljidstb6o8lu06qphs1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
