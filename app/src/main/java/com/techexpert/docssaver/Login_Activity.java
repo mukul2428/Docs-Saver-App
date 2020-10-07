@@ -21,9 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Login_Activity extends AppCompatActivity {
-
-
+public class Login_Activity extends AppCompatActivity
+{
     private FirebaseAuth mAuth;
     private ProgressDialog loadingBar;
 
@@ -35,7 +34,8 @@ public class Login_Activity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_);
 
@@ -112,11 +112,15 @@ public class Login_Activity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+                        public void onComplete(@NonNull Task<AuthResult> task)
+                        {
+                            if (task.isSuccessful())
+                            {
+
                                 SendUserToMainActivity();
                                 Toast.makeText(Login_Activity.this, "Logged in Successful...", Toast.LENGTH_SHORT).show();
-                            } else {
+                            }
+                            else {
                                 String message = task.getException().toString();
                                 Toast.makeText(Login_Activity.this, "Error : " + message, Toast.LENGTH_SHORT).show();
                             }
@@ -124,6 +128,8 @@ public class Login_Activity extends AppCompatActivity {
                         }
                     });
         }
+
+
     }
 
 
@@ -153,5 +159,4 @@ public class Login_Activity extends AppCompatActivity {
         Intent registerIntent = new Intent(Login_Activity.this, Register_Activity.class);
         startActivity(registerIntent);
     }
-
 }

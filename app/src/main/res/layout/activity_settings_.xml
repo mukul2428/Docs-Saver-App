@@ -10,7 +10,7 @@
 
     <include
         layout="@layout/app_bar_layout"
-        android:id="@+id/settings_toolbar"
+        android:id="@+id/login_settings_toolbar"
         >
 
     </include>
@@ -18,7 +18,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_toolbar"
+        android:layout_below="@+id/login_settings_toolbar"
         android:layout_alignParentStart="true">
 
         <RelativeLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/set_profile_image"
+                android:id="@+id/set_login_profile_image"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_alignParentTop="true"
@@ -39,8 +39,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/set_user_name"
-                android:layout_below="@+id/set_profile_image"
+                android:id="@+id/set_login_user_name"
+                android:layout_below="@+id/set_login_profile_image"
                 android:inputType="textImeMultiLine"
                 android:hint="Username"
                 android:textAlignment="center"
@@ -57,8 +57,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/set_profile_status"
-                android:layout_below="@+id/set_user_name"
+                android:id="@+id/set_login_profile_status"
+                android:layout_below="@+id/set_login_user_name"
                 android:inputType="textImeMultiLine"
                 android:hint="Status"
                 android:textAlignment="center"
@@ -75,8 +75,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/update_settings_button"
-                android:layout_below="@+id/set_profile_status"
+                android:id="@+id/update_login_settings_button"
+                android:layout_below="@+id/set_login_profile_status"
                 android:inputType="textImeMultiLine"
                 android:text="Update"
                 android:textAlignment="center"

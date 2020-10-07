@@ -21,13 +21,15 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.concurrent.TimeUnit;
 
 public class Phone_Login_Activity extends AppCompatActivity {
 
 
-    private Button sendVerificationCode, VerifyButton;
+    private  Button sendVerificationCode, VerifyButton;
     private EditText InputPhoneNumber, InputVerificationCode;
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
@@ -41,8 +43,7 @@ public class Phone_Login_Activity extends AppCompatActivity {
     private DatabaseReference UsersRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone__login_);
 
@@ -86,8 +87,7 @@ public class Phone_Login_Activity extends AppCompatActivity {
             }
         });
 
-        VerifyButton.setOnClickListener(new View.OnClickListener()
-        {
+        VerifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -153,8 +153,8 @@ public class Phone_Login_Activity extends AppCompatActivity {
                 InputVerificationCode.setVisibility(View.VISIBLE);
             }
         };
-
     }
+
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential)
     {
@@ -166,18 +166,39 @@ public class Phone_Login_Activity extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
 
-                            LoadingBar.dismiss();
-                            Toast.makeText(Phone_Login_Activity.this, "Logged in Successfully...", Toast.LENGTH_SHORT).show();
-                            sendUserToMainActivity();
+                            final String currentUserId = mAuth.getCurrentUser().getUid();
+
+                            FirebaseInstanceId.getInstance().getInstanceId()
+                                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                            if (task.isSuccessful())
+                                            {
+                                                String token = task.getResult().getToken();
+
+                                                UsersRef.child(currentUserId).child("device_token")
+                                                        .setValue(token);
+                                                LoadingBar.dismiss();
+                                                Toast.makeText(Phone_Login_Activity.this, "Logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                                sendUserToMainActivity();
+                                            }
+                                            else
+                                            {
+                                                String message = task.getException().toString();
+                                                Toast.makeText(Phone_Login_Activity.this, "Error: "+ message, Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         }
-                        else {
+                        else
+                        {
+                            // Sign in failed
                             String message = task.getException().toString();
                             Toast.makeText(Phone_Login_Activity.this, "Error: "+ message, Toast.LENGTH_SHORT).show();
                         }
                     }
-                                    });
+                });
     }
-
 
     private void sendUserToMainActivity()
     {
@@ -186,4 +207,5 @@ public class Phone_Login_Activity extends AppCompatActivity {
         startActivity(mainIntent);
         finish();
     }
+
 }
